@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ff444444"
+    android:orientation="vertical" >
+
+    <com.argosydev.android.sara.dva.GraphView
+        android:id="@+id/graphintrnl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" />
+
+    <!-- <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0.01pt"
+        android:background="#ff444444" >
+
+        <TextView
+            android:id="@+id/LabelSensor4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="0.1pt"
+            android:layout_weight="6"
+            android:background="#ff000000"
+            android:gravity="center"
+            android:text="@string/label_sensor4"
+            android:textColor="#ff64ff64"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/LabelSensor5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="6"
+            android:background="#ff000000"
+            android:gravity="center"
+            android:text="@string/label_sensor5"
+            android:textColor="#ffffff64"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/LabelSensor6"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0.1pt"
+            android:layout_weight="6"
+            android:background="#ff000000"
+            android:gravity="center"
+            android:text="@string/label_sensor6"
+            android:textColor="#ffff6464"
+            android:textSize="20sp" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff444444" >
+
+        <TextView
+            android:id="@+id/sensorvalue4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="0.1pt"
+            android:layout_weight="6"
+            android:background="#ff000000"
+            android:gravity="center"
+            android:text="@string/sensorvalue4"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/sensorvalue5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="6"
+            android:background="#ff000000"
+            android:gravity="center"
+            android:text="@string/sensorvalue5"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/sensorvalue6"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0.1pt"
+            android:layout_weight="6"
+            android:background="#ff000000"
+            android:gravity="center"
+            android:text="@string/sensorvalue6"
+            android:textSize="20sp" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff444444"
+        android:orientation="horizontal" >
+    </LinearLayout> -->
+
+</LinearLayout>

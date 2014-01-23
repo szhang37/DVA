@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dvaCfgVersion>0.0.0.1</dvaCfgVersion>
+<dvaCfg>
+    <dvaRetrys>5</dvaRetrys>
+    <dvaStaticStrt>2</dvaStaticStrt>
+    <dvaDynaStrt>3</dvaDynaStrt>
+    <dvaMaxAcuityLvl>10</dvaMaxAcuityLvl>
+    <dvaTestPerAcuity>2</dvaTestPerAcuity>
+    <dvaTrigInhibitor>50</dvaTrigInhibitor>
+</dvaCfg>

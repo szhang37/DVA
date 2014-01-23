@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <Button
+        android:id="@+id/dvb3DynaDn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dvb2DynaUp"
+        android:layout_below="@+id/dvb4DynaRght"
+        android:onClick="dvb3DynaDn"
+        android:text="@string/dynamic_down" />
+
+    <Button
+        android:id="@+id/dvb2DynaUp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="276dp"
+        android:layout_marginTop="44dp"
+        android:onClick="dvb2DynaUp"
+        android:text="@string/dynamic_up" />
+
+    <Button
+        android:id="@+id/dvb1Static"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dvb2DynaUp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="32dp"
+        android:onClick="dvb1Static"
+        android:text="@string/dva_static" />
+
+    <Button
+        android:id="@+id/dvb4DynaRght"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dvb2DynaUp"
+        android:layout_alignBottom="@+id/dvb2DynaUp"
+        android:layout_toRightOf="@+id/dvb3DynaDn"
+        android:onClick="dvb4DynaRght"
+        android:text="@string/dynamic_right" />
+
+    <Button
+        android:id="@+id/dvb5DynaLeft"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dvb3DynaDn"
+        android:layout_alignBottom="@+id/dvb3DynaDn"
+        android:layout_toRightOf="@+id/dvb3DynaDn"
+        android:onClick="dvb5DynaLeft"
+        android:text="@string/dynamic_left" />
+
+    <Button
+        android:id="@+id/dvb6ComputeDVA"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dvb1Static"
+        android:layout_alignBottom="@+id/dvb1Static"
+        android:layout_alignLeft="@+id/dvb7Quit"
+        android:onClick="dvb6ComputeDVA"
+        android:text="@string/compute_dva" />
+
+    <Button
+        android:id="@+id/dvb7Quit"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="77dp"
+        android:layout_marginRight="17dp"
+        android:onClick="dvb7Quit"
+        android:text="@string/quit" />
+
+</RelativeLayout>
