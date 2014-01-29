@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.BufferedInputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -189,10 +190,14 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static String dynaBigFileRcd;
 	private static String dynaBigFileStrng;
 	private static String dynaSmlFileRcd;
+	//add the trigger file record string declaration
+	private static String dynaTrgFileRcd;
 	private static File dvaFile;
 	private static BufferedWriter dvaStaticWriter;
 	private static BufferedWriter dvaDynaSmlWriter;
 	private static BufferedWriter dvaDynaBigWriter;
+	//add the trigger file writer
+	private static BufferedWriter dvaDynaTrgWriter;
 	private static DVATestType c_shown;
 	private static DVATestType c_response;
 	private static int[][] dvaCArr;
@@ -213,6 +218,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static int flashTries;
 	private static XmlPullParser dvaXpp;
 	private static InputStream dvaInputStr;
+	private static OutputStream dvaOutputStr;
 	private static int dvaRetrys;
 	private static int dvaStaticStrt;
 	private static int dvaDynaStrt;
@@ -269,13 +275,40 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			e.printStackTrace();
 		}
 		File root = Environment.getExternalStorageDirectory();
-		File dvaCfgFile = new File(root, "DVA/cfg/dvaCfg.xml");
+		File dvaCfgFileDir = new File(root, "DVA/cfg/");
+		
+		/** modification from Shi */
+		if(!dvaCfgFileDir.exists()){
+			dvaCfgFileDir.mkdirs();
+		}
+		File dvaCfgFile = new File(dvaCfgFileDir, "dvaCfg.xml");
+		if(!dvaCfgFile.exists())
+		{
+			try {
+				dvaCfgFile.createNewFile();
+				//dvaOutputStr = new BufferedOutputStream(new FileOutputStream(dvaCfgFile));
+				FileWriter dvdCfgFileWriter = new FileWriter(dvaCfgFile);
+				InputStream dvdCfgFileStream = getAssets().open("dvaCfg.xml");
+		        int size = dvdCfgFileStream.available();
+		        byte[] buffer = new byte[size];
+		        dvdCfgFileStream.read(buffer);
+		        dvdCfgFileStream.close();
+		        dvdCfgFileWriter.write(new String(buffer));
+			
+			} catch (IOException e) {
+				
+				Log.e("write file error", e.getMessage());
+			}
+		}
+		
+		/** end modification */
 		try {
 			dvaInputStr = new BufferedInputStream(new FileInputStream(
 					dvaCfgFile));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		//parse the data from the configuration file dvaCfg.xml on the sd card
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			factory.setNamespaceAware(true);
@@ -1436,6 +1469,16 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			/** Shi Zhang modified start (add name writer for trigger file)*/
+			
+			try {
+				dvaDynaTrgWriter = new BufferedWriter(new FileWriter((dvaFile
+						+ "_" + dvaTestType + "Trg" + ".csv"), true));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			/** modify end*/
 		}
 
 	}
@@ -1487,7 +1530,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			return;
 		}
 	}
-
+	/**Shi Zhang modified the method to write the same to trigger file*/
 	private void dvaDynaSmlRcrd(DVATestType c_response) {
 		// record the results of the test
 		Long dvaElapse = (System.currentTimeMillis()) - dvaTstStrtTime;
@@ -1517,6 +1560,9 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			try {
 				dvaDynaSmlWriter.write(dynaSmlFileRcd);
 				dvaDynaSmlWriter.newLine();
+				//trigger file write 
+				dvaDynaTrgWriter.write(dynaSmlFileRcd);
+				dvaDynaTrgWriter.newLine();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -1526,11 +1572,16 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			try {
 				dvaDynaSmlWriter.write(dynaSmlFileRcd);
 				dvaDynaSmlWriter.newLine();
+				//trigger file write 
+				dvaDynaTrgWriter.write(dynaSmlFileRcd);
+				dvaDynaTrgWriter.newLine();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			try {
 				dvaDynaSmlWriter.close();
+				//close trigger file
+				dvaDynaTrgWriter.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -1544,6 +1595,10 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		}
 		return;
 
+	}
+	/**TO DO: generate the trigger file content of trigger data*/
+	private void dvaDynaTrgRcrd(DVATestType c_response) {
+		
 	}
 
 	private void storeBigFile() {
