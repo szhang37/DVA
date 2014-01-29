@@ -732,12 +732,15 @@ public class DVAActivity extends Activity implements SensorEventListener {
 					} else
 						flash = 1;
 				}
+			//trigger start
 			if (flash == 1) {
 				setImage();
 				trigCapture--;
 				dvaTrigInhibit = dvaTrigInhibitor;
 				testButtons(1);
 				flash = 0;
+				/** Shi Zhang modified:Capture data for trigger file*/
+				dvaDynaTrgRcrd();
 			}
 			break;
 		case DN:
@@ -760,6 +763,8 @@ public class DVAActivity extends Activity implements SensorEventListener {
 				dvaTrigInhibit = dvaTrigInhibitor;
 				testButtons(1);
 				flash = 0;
+				/** Shi Zhang modified:Capture data for trigger file*/
+				dvaDynaTrgRcrd();
 			}
 			break;
 		case LEFT:
@@ -782,6 +787,8 @@ public class DVAActivity extends Activity implements SensorEventListener {
 				dvaTrigInhibit = dvaTrigInhibitor;
 				testButtons(1);
 				flash = 0;
+				/** Shi Zhang modified:Capture data for trigger file*/
+				dvaDynaTrgRcrd();
 			}
 			break;
 		case RIGHT:
@@ -804,6 +811,8 @@ public class DVAActivity extends Activity implements SensorEventListener {
 				dvaTrigInhibit = dvaTrigInhibitor;
 				testButtons(1);
 				flash = 0;
+				/** Shi Zhang modified:Capture data for trigger file*/
+				dvaDynaTrgRcrd();
 			}
 			break;
 		default: {
@@ -1597,7 +1606,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 
 	}
 	/**TO DO: generate the trigger file content of trigger data*/
-	private void dvaDynaTrgRcrd(DVATestType c_response) {
+	private void dvaDynaTrgRcrd() {
 		
 	}
 
@@ -1644,4 +1653,5 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		while (System.currentTimeMillis() < mFuture) {
 		}
 	}
+
 }
