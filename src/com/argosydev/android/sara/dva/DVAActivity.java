@@ -1607,7 +1607,35 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	}
 	/**TO DO: generate the trigger file content of trigger data*/
 	private void dvaDynaTrgRcrd() {
+		// record the results of the test
+		Long dvaElapse = (System.currentTimeMillis()) - dvaTstStrtTime;
+		dynaTrgFileRcd = Long.toString(dvaElapse) + ",";
+		dynaTrgFileRcd += acuityLvl + ",";
+		dynaTrgFileRcd += c_shown + ",";
+		//Trg shown and chosen is the same currently
+		dynaTrgFileRcd += c_shown;
+		// apply special computations to internal and external (see spec)
+		// 100ms at approx 40ms sample rate is at least 3 samples average.
+		// WARNING: a sample rate change for internal accel changes this
+		for (int i = 0; i < 3; i++) {
+			dynaTrgFileRcd += ","
+					+ Double.toString(((dvaStaticArr[dvaStaticDex][i]
+							+ dvaStaticArr[dvaStaticDex - 1][i] + dvaStaticArr[dvaStaticDex - 2][i]) / 3));
+		}
+		// this algo needs to be replaced with peak head velocity tracking
+		// data
+		for (int i = 0; i <= 6; i++)
+			dynaTrgFileRcd += "," + (Double.toString(extCalibratedDataArr[i]));
 		
+		if (dvaTestCnt > 0) {
+			try {
+				//trigger file write 
+				dvaDynaTrgWriter.write(dynaTrgFileRcd);
+				dvaDynaTrgWriter.newLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void storeBigFile() {
