@@ -192,6 +192,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static String dynaSmlFileRcd;
 	//add the trigger file record string declaration
 	private static String dynaTrgFileRcd;
+	private static String dynaTrgMarker;
 	private static File dvaFile;
 	private static BufferedWriter dvaStaticWriter;
 	private static BufferedWriter dvaDynaSmlWriter;
@@ -254,6 +255,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		// the gyro trigger threshold in mS
 		triggerPeriod = 40;
 		gyroTrigger = 120.0; // matches default in layout
+		dynaTrgMarker = "TRIG";
 		random = new Random();
 		acuityMax = 3;
 		acuityLvl = acuityMax; // number of acuity levels to test
@@ -1613,7 +1615,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		dynaTrgFileRcd += acuityLvl + ",";
 		dynaTrgFileRcd += c_shown + ",";
 		//Trg shown and chosen is the same currently
-		dynaTrgFileRcd += c_shown;
+		dynaTrgFileRcd += dynaTrgMarker;
 		// apply special computations to internal and external (see spec)
 		// 100ms at approx 40ms sample rate is at least 3 samples average.
 		// WARNING: a sample rate change for internal accel changes this
