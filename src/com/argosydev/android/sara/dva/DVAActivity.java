@@ -185,6 +185,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static int dvaTestCnt;
 	private static int dvaTestCycle;
 	private static int dvaTestMax;
+	private static int dvaWrgCnt;
 	private static Random random;
 	private static String staticFileRcd;
 	private static String dynaBigFileRcd;
@@ -259,6 +260,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		random = new Random();
 		acuityMax = 3;
 		acuityLvl = acuityMax; // number of acuity levels to test
+		dvaWrgCnt = 0;
 		dvaTestCycle = 2; // loaded later from file
 		// dvaTestMax = acuityLvl * dvaTestCycle;
 		dynaBigFileStrng = "";
@@ -1257,11 +1259,13 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			dvaState = DVAState.DVADyna;
 			setFileName(dvaState);
 			acuityLvl = dvaDynaStrt;
+			dvaWrgCnt = 0;
 			dvaTestCnt = dvaDynaTestMax;
 			dvaStateMac = 150;
 			Log.d(NOTIFICATION_SERVICE, "dvaStateMac = 150");
 			return true;
 		}
+		
 		if (dvaGo == 160) {
 			// Dyna testing started with "Start New Test"
 			// records the data at 10ms intervals until canceled by direction
@@ -1311,6 +1315,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			dvaTestType = DVATestType.STATIC;
 			// gen the Landolt C image
 			acuityLvl = dvaStaticStrt;
+			dvaWrgCnt = 0;
 			dvaTestCnt = dvaStaticTestMax;
 			setImage();
 			dvaState = DVAState.DVAStatic;
@@ -1508,11 +1513,16 @@ public class DVAActivity extends Activity implements SensorEventListener {
 				staticFileRcd = staticFileRcd + ","
 						+ (Double.toString(dvaStaticArr[dvaStaticDex][i]));
 			dvaTestCnt--;
-			if (dvaTestCnt > 0) {
+			if(!c_shown.equals(c_response))
+				dvaWrgCnt ++;
+			if (dvaTestCnt > 0 && dvaWrgCnt < 5) {
 				// the order of these two commands effects when the image
 				// transitions occur.
 				if ((dvaTestCnt % dvaTestPerAcuity) == 0)
+				{
 					acuityLvl--;
+					dvaWrgCnt = 0;
+				}
 				setImage();
 				try {
 					dvaStaticWriter.write(staticFileRcd);
@@ -1563,11 +1573,19 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			dynaSmlFileRcd += "," + (Double.toString(extCalibratedDataArr[i]));
 
 		dvaTestCnt--;
-		if (dvaTestCnt > 0) {
+		if(!c_shown.equals(c_response))
+		{
+			dvaWrgCnt ++;
+			Log.v("Wrg", dvaWrgCnt+",");
+		}
+		if (dvaTestCnt > 0 && dvaWrgCnt < 5) {
 			// the order of these two commands effects when the image
 			// transitions occur.
 			if ((dvaTestCnt % dvaTestPerAcuity) == 0)
+			{
 				acuityLvl--;
+				dvaWrgCnt = 0;
+			}
 			try {
 				dvaDynaSmlWriter.write(dynaSmlFileRcd);
 				dvaDynaSmlWriter.newLine();
