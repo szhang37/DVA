@@ -64,5 +64,27 @@
     <string name="return_to_main">Return To Main</string>
     <string name="landoltc">landoltc</string>
     <string name="filename">filename</string>
+   <!-- Preference Setting Values -->
+   <string name="dvatestsetting">DVA Test Setting</string>
    
+    <string name="dva_test_retrys_num_title">Retrys Limit</string>
+    <string name="dva_test_retrys_num_summary">DVA test Retrys number</string>
+    <string name="dva_static_start_lvl_title">Static Start Level</string>
+    <string name="dva_static_start_lvl_summary">DVA Static Start Level</string>
+    <string name="dva_dyna_start_lvl_title">Dynamic Start Level</string>
+    <string name="dva_dyna_start_lvl_summary">DVA Dynamic Start Level</string>
+    <string name="dva_max_acuity_lvl_title">Max Acuity Level</string>
+    <string name="dva_max_acuity_lvl_summary">DVA Test Maximum Acuity Level</string>
+    <string name="dva_test_per_acuity_title">Test Per Acuity</string>
+    <string name="dva_test_per_acuity_summary">DVA Test Per Acuity</string>
+    <string name="dva_trg_inhibitor_num_title">Trigger Inhibitor</string>
+    <string name="dva_trg_inhibitor_num_summary">DVA Trigger Inhibitor Number</string>
+    
+     <string name="dva_test_retrys_num_default">5</string>
+     <string name="dva_static_start_lvl_default">5</string>
+     <string name="dva_dyna_start_lvl_default">5</string>
+     <string name="dva_test_per_acuity_default">5</string>
+     <string name="dva_trg_inhibitor_num_default">5</string>
+     <string name="dva_max_acuity_lvl_default">5</string>
+     
 </resources>

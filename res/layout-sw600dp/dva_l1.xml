@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="35dp">
+
+    
+    <Button
+        android:id="@+id/dvb1Static"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="dvb1Static"
+        android:text="@string/dva_static" />
+	<RelativeLayout
+    android:id="@+id/grid"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true">
+    <Button
+        android:id="@+id/dvb2DynaUp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:onClick="dvb2DynaUp"
+        android:text="@string/dynamic_up" />
+    
+    <Button
+        android:id="@+id/dvb3DynaDn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dvb2DynaUp"
+        android:onClick="dvb3DynaDn"
+        android:text="@string/dynamic_down" />
+
+    <Button
+        android:id="@+id/dvb4DynaRght"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/dvb2DynaUp"
+        android:layout_alignTop="@+id/dvb2DynaUp"
+        android:onClick="dvb4DynaRght"
+        android:text="@string/dynamic_right" />
+
+    <Button
+        android:id="@+id/dvb5DynaLeft"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dvb4DynaRght"
+        android:layout_toRightOf="@+id/dvb3DynaDn"
+        android:onClick="dvb5DynaLeft"
+        android:text="@string/dynamic_left" />
+	</RelativeLayout>
+    <Button
+        android:id="@+id/dvb6ComputeDVA"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:onClick="dvb6ComputeDVA"
+        android:text="@string/compute_dva" />
+
+    <Button
+        android:id="@+id/dvb7Quit"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="dvb7Quit"
+        android:text="@string/quit" />
+
+</RelativeLayout>

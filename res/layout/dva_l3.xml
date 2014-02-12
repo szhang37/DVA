@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="dva_test_retrys_num_title"
+        android:title="@string/dva_test_retrys_num_title"
+        android:summary="@string/dva_test_retrys_num_summary"
+        android:dialogTitle="@string/dva_test_retrys_num_title"
+        android:defaultValue="@string/dva_test_retrys_num_default"
+        android:inputType="number" />
+    
+    <EditTextPreference
+        android:key="dva_test_per_acuity"
+        android:title="@string/dva_test_per_acuity_title"
+        android:summary="@string/dva_test_per_acuity_summary"
+        android:dialogTitle="@string/dva_test_per_acuity_title"
+        android:defaultValue="@string/dva_test_per_acuity_default"
+        android:inputType="number" />
+    
+    <EditTextPreference
+        android:key="dva_static_start_lvl"
+        android:title="@string/dva_static_start_lvl_title"
+        android:summary="@string/dva_static_start_lvl_summary"
+        android:dialogTitle="@string/dva_static_start_lvl_title"
+        android:defaultValue="@string/dva_static_start_lvl_default"
+        android:inputType="number" />
+    
+    <EditTextPreference
+        android:key="dva_dyna_start_lvl"
+        android:title="@string/dva_dyna_start_lvl_title"
+        android:summary="@string/dva_dyna_start_lvl_summary"
+        android:dialogTitle="@string/dva_dyna_start_lvl_title"
+        android:defaultValue="@string/dva_dyna_start_lvl_default"
+        android:inputType="number" />
+    
+    <EditTextPreference
+        android:key="dva_max_acuity_lvl"
+        android:title="@string/dva_max_acuity_lvl_title"
+        android:summary="@string/dva_max_acuity_lvl_summary"
+        android:dialogTitle="@string/dva_max_acuity_lvl_title"
+        android:defaultValue="@string/dva_max_acuity_lvl_default"
+        android:inputType="number" />
+    
+    <EditTextPreference
+        android:key="dva_trg_inhibitor_num"
+        android:title="@string/dva_trg_inhibitor_num_title"
+        android:summary="@string/dva_trg_inhibitor_num_summary"
+        android:dialogTitle="@string/dva_trg_inhibitor_num_title"
+        android:defaultValue="@string/dva_trg_inhibitor_num_default"
+        android:inputType="number" />
+    
+
+</PreferenceScreen>

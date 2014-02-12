@@ -36,13 +36,15 @@ public final class CombineDblArr {
 		int locCShown = 0;
 		int locCResponse = 0;
 
-		File root = Environment.getExternalStorageDirectory();
-		dvaLog = new File(root, "DVA/testLog.csv");
-		try {
-			dvaLogWriter = new BufferedWriter(new FileWriter(dvaLog, true));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		//File root = Environment.getExternalStorageDirectory();
+		//dvaLog = new File(root, "DVA/testLog.csv");
+		//try {
+			//dvaLog.delete();
+			//dvaLog.createNewFile();
+			//dvaLogWriter = new BufferedWriter(new FileWriter(dvaLog, true));
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
 
 		for (int i = 0; i < lrgSize; i++) {
 			if (lrgArr[i][lrgTSDim] == startTS) {
@@ -169,11 +171,11 @@ public final class CombineDblArr {
 						sb.append(rtrnArr[l][m]).append(",");
 						if (rtrnArr[l][m] == 0) {
 							logBuf = l + "," + m + "," + rtrnArr[l][m] + "\n";
-							try {
-								dvaLogWriter.write(logBuf);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+//							try {
+//								dvaLogWriter.write(logBuf);
+//							} catch (IOException e) {
+//								e.printStackTrace();
+//							}
 						}
 					}
 

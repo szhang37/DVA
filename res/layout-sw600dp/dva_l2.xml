@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dva_l2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <EditText
+        android:id="@+id/editText21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/dvb20Static"
+        android:layout_toLeftOf="@+id/dvb28StartNewTest"
+        android:layout_alignTop="@+id/dvb30Return"
+        android:ems="10"
+        android:hint="@string/filename"
+        android:inputType="none|text"
+        android:onClick="dvb1Static" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/dvb28StartNewTest"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/dvb31Quit"
+        android:onClick="dvb28StartNewTest"
+        android:text="@string/start_new_test" 
+        android:textSize="12sp"/>
+    
+        <Button
+        android:id="@+id/dvb31Quit"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"
+        android:onClick="dvb7Quit"
+        android:text="@string/quit" 
+        android:textSize="12sp"/>
+        
+        <Button
+        android:id="@+id/dvb30Return"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="dvb30Return"
+        android:text="@string/return_to_main" 
+        android:textSize="12sp"/>
+
+    <Button
+        android:id="@+id/dvb20Static"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dvb30Return"
+        android:onClick="dvb20Static"
+        android:text="@string/dva_static" 
+        android:textSize="12sp"/>
+
+    
+
+    <TextView
+        android:id="@+id/dvDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText21"
+        android:layout_alignBaseline="@+id/dvb20Static"
+        android:layout_marginLeft="50dp"
+        android:text="active device"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        android:visibility="gone"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText21"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/dvrb60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60\u00B0/s" />
+
+        <RadioButton
+            android:id="@+id/dvrb120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="120\u00B0/s" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="trigger retrys:"
+        android:layout_alignLeft="@+id/radioGroup1"
+        android:layout_below="@+id/radioGroup1"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/dvaRetrys"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginLeft="44dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/landoltc"
+        android:padding="1dp"
+        android:src="@drawable/c_dn_3"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/dvb24Up"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="dvb24Up"
+        android:text="@string/up"
+		android:textSize="12sp"/>
+
+    <Button
+        android:id="@+id/dvb23Rght"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/dvb22Dn"
+        android:onClick="dvb23Rght"
+        android:text="@string/right"
+        android:textSize="12sp"/>
+    <Button
+        android:id="@+id/dvb29Left"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/dvb24Up"
+        android:onClick="dvb29Left"
+        android:text="@string/left" 
+        android:textSize="12sp"/>
+        <Button
+        android:id="@+id/dvb22Dn"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="dvb22Dn"
+        android:text="@string/down" 
+        android:textSize="12sp"/>
+
+</RelativeLayout>

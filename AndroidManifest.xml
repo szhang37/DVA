@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name="DeviceListActivity"></activity>
+        <activity android:name="DVASettingsActivity"></activity>
     </application>
 
 </manifest>

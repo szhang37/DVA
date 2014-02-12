@@ -471,6 +471,9 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		case R.id.dvateststart:
 			onNavigate(140);
 			return true;
+		case R.id.dvatestsetting:
+			onNavigate(340);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -1338,6 +1341,10 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			dvaStateMac = 330;
 			Log.d(NOTIFICATION_SERVICE, "dvaStateMac = 330");
 			return true;
+		}
+		if(dvaGo ==340) {
+			Intent intent = new Intent(this, DVASettingsActivity.class);
+			startActivity(intent);
 		}
 
 		return true;

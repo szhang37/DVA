@@ -21,4 +21,8 @@
         android:id="@+id/dvateststart"
         android:title="@string/dvateststart">
     </item>
+    <item
+        android:id="@+id/dvatestsetting"
+        android:title="@string/dvatestsetting">
+    </item>
 </menu>
