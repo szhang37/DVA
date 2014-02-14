@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="dva_test_basic_setting"
+        android:title="@string/dva_test_basic_setting"
+        android:persistent="false">
     <EditTextPreference
-        android:key="dva_test_retrys_num_title"
+        android:key="dva_test_retrys_num"
         android:title="@string/dva_test_retrys_num_title"
         android:summary="@string/dva_test_retrys_num_summary"
         android:dialogTitle="@string/dva_test_retrys_num_title"
@@ -47,6 +51,22 @@
         android:dialogTitle="@string/dva_trg_inhibitor_num_title"
         android:defaultValue="@string/dva_trg_inhibitor_num_default"
         android:inputType="number" />
+    </PreferenceCategory>
     
+    <PreferenceCategory
+        android:key="dva_test_pre_setting"
+        android:title="@string/dva_test_pre_setting"
+        android:persistent="false">
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="dva_near_default_setting"
+        android:title="@string/dva_near_default_setting" />
+    
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="dva_far_default_setting"
+        android:title="@string/dva_near_default_setting" />
+        
+    </PreferenceCategory>
 
 </PreferenceScreen>

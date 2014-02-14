@@ -65,8 +65,9 @@
     <string name="landoltc">landoltc</string>
     <string name="filename">filename</string>
    <!-- Preference Setting Values -->
-   <string name="dvatestsetting">DVA Test Setting</string>
-   
+   <string name="dvatestsetting">DVA Setting</string>
+   <string name="dva_test_basic_setting">Custom Setting</string>
+   <string name="dva_test_pre_setting">Default Setting</string>
     <string name="dva_test_retrys_num_title">Retrys Limit</string>
     <string name="dva_test_retrys_num_summary">DVA test Retrys number</string>
     <string name="dva_static_start_lvl_title">Static Start Level</string>
@@ -86,5 +87,8 @@
      <string name="dva_test_per_acuity_default">5</string>
      <string name="dva_trg_inhibitor_num_default">5</string>
      <string name="dva_max_acuity_lvl_default">5</string>
+     
+     <string name="dva_far_default_setting">Default Setting for Long Distance Test</string>
+     <string name="dva_near_default_setting">Default Setting for Short Distance Test</string>
      
 </resources>

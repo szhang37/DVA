@@ -35,6 +35,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -44,6 +45,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -218,20 +220,20 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static int dynaStartAcuity;
 	private static int maxAcuity;
 	private static int flashTries;
-	private static XmlPullParser dvaXpp;
-	private static InputStream dvaInputStr;
-	private static OutputStream dvaOutputStr;
-	private static int dvaRetrys;
-	private static int dvaStaticStrt;
-	private static int dvaDynaStrt;
-	private static int dvaStaticTestMax;
-	private static int dvaDynaTestMax;
-	private static int dvaMaxAcuityLvl;
-	private static int retrigger;
+//	private static XmlPullParser dvaXpp;
+//	private static InputStream dvaInputStr;
+//	private static OutputStream dvaOutputStr;
+	public static int dvaRetrys;
+	public static int dvaStaticStrt;
+	public static int dvaDynaStrt;
+	public static int dvaStaticTestMax;
+	public static int dvaDynaTestMax;
+	public static int dvaMaxAcuityLvl;
+	public static int retrigger;
 	private static TextView dvaRetryCnt;
 	private static int dvaTrigInhibit;
-	private static int dvaTestPerAcuity;
-	private static int dvaTrigInhibitor;
+	public static int dvaTestPerAcuity;
+	public static int dvaTrigInhibitor;
 	private static String deviceName;
 	private static TextView dvaDeviceTV;
 	private static int dvaPositionHold;
@@ -278,84 +280,85 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		File root = Environment.getExternalStorageDirectory();
-		File dvaCfgFileDir = new File(root, "DVA/cfg/");
-		
-		/** modification from Shi */
-		if(!dvaCfgFileDir.exists()){
-			dvaCfgFileDir.mkdirs();
-		}
-		File dvaCfgFile = new File(dvaCfgFileDir, "dvaCfg.xml");
-		if(!dvaCfgFile.exists())
-		{
-			try {
-				dvaCfgFile.createNewFile();
-				//dvaOutputStr = new BufferedOutputStream(new FileOutputStream(dvaCfgFile));
-				FileWriter dvdCfgFileWriter = new FileWriter(dvaCfgFile);
-				InputStream dvdCfgFileStream = getAssets().open("dvaCfg.xml");
-		        int size = dvdCfgFileStream.available();
-		        byte[] buffer = new byte[size];
-		        dvdCfgFileStream.read(buffer);
-		        dvdCfgFileStream.close();
-		        dvdCfgFileWriter.write(new String(buffer));
-			
-			} catch (IOException e) {
-				
-				Log.e("write file error", e.getMessage());
-			}
-		}
-		
-		/** end modification */
-		try {
-			dvaInputStr = new BufferedInputStream(new FileInputStream(
-					dvaCfgFile));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//		File root = Environment.getExternalStorageDirectory();
+//		File dvaCfgFileDir = new File(root, "DVA/");
+//		
+//		/** modification from Shi */
+//		if(!dvaCfgFileDir.exists()){
+//			dvaCfgFileDir.mkdirs();
+//		}
+//		File dvaCfgFile = new File(dvaCfgFileDir, "dvaCfg.xml");
+//		if(!dvaCfgFile.exists())
+//		{
+//			try {
+//				dvaCfgFile.createNewFile();
+//				//dvaOutputStr = new BufferedOutputStream(new FileOutputStream(dvaCfgFile));
+//				FileWriter dvdCfgFileWriter = new FileWriter(dvaCfgFile);
+//				InputStream dvdCfgFileStream = getAssets().open("dvaCfg.xml");
+//		        int size = dvdCfgFileStream.available();
+//		        byte[] buffer = new byte[size];
+//		        dvdCfgFileStream.read(buffer);
+//		        dvdCfgFileStream.close();
+//		        dvdCfgFileWriter.write(new String(buffer));
+//		        dvdCfgFileWriter.close();
+//			
+//			} catch (IOException e) {
+//				
+//				Log.e("write file error", e.getMessage());
+//			}
+//		}
+//		
+//		/** end modification */
+//		try {
+//			dvaInputStr = new BufferedInputStream(new FileInputStream(
+//					dvaCfgFile));
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		//parse the data from the configuration file dvaCfg.xml on the sd card
-		try {
-			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-			factory.setNamespaceAware(true);
-			dvaXpp = factory.newPullParser();
-			dvaXpp.setInput(dvaInputStr, null);
-			int dvaEventType = dvaXpp.getEventType();
-			while (dvaEventType != XmlPullParser.END_DOCUMENT) {
-				if (dvaEventType == XmlPullParser.START_TAG) {
-					String dvaCfgText = dvaXpp.getName();
-					if (dvaCfgText.equals("dvaRetrys")) {
-						dvaEventType = dvaXpp.next();
-						dvaRetrys = Integer.parseInt((dvaXpp.getText()));
-					}
-					if (dvaCfgText.equals("dvaStaticStrt")) {
-						dvaEventType = dvaXpp.next();
-						dvaStaticStrt = Integer.parseInt((dvaXpp.getText()));
-					}
-					if (dvaCfgText.equals("dvaDynaStrt")) {
-						dvaEventType = dvaXpp.next();
-						dvaDynaStrt = Integer.parseInt((dvaXpp.getText()));
-					}
-					if (dvaCfgText.equals("dvaMaxAcuityLvl")) {
-						dvaEventType = dvaXpp.next();
-						dvaMaxAcuityLvl = Integer.parseInt((dvaXpp.getText()));
-					}
-					if (dvaCfgText.equals("dvaTestPerAcuity")) {
-						dvaEventType = dvaXpp.next();
-						dvaTestPerAcuity = Integer.parseInt((dvaXpp.getText()));
-					}
-					if (dvaCfgText.equals("dvaTrigInhibitor")) {
-						dvaEventType = dvaXpp.next();
-						dvaTrigInhibitor = Integer.parseInt((dvaXpp.getText()));
-					}
-				}
-				dvaEventType = dvaXpp.next();
-			}
-		} catch (XmlPullParserException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		dvaStaticTestMax = dvaStaticStrt * dvaTestPerAcuity;
-		dvaDynaTestMax = dvaDynaStrt * dvaTestPerAcuity;
+//		try {
+//			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+//			factory.setNamespaceAware(true);
+//			dvaXpp = factory.newPullParser();
+//			dvaXpp.setInput(dvaInputStr, null);
+//			int dvaEventType = dvaXpp.getEventType();
+//			while (dvaEventType != XmlPullParser.END_DOCUMENT) {
+//				if (dvaEventType == XmlPullParser.START_TAG) {
+//					String dvaCfgText = dvaXpp.getName();
+//					if (dvaCfgText.equals("dvaRetrys")) {
+//						dvaEventType = dvaXpp.next();
+//						dvaRetrys = Integer.parseInt((dvaXpp.getText()));
+//					}
+//					if (dvaCfgText.equals("dvaStaticStrt")) {
+//						dvaEventType = dvaXpp.next();
+//						dvaStaticStrt = Integer.parseInt((dvaXpp.getText()));
+//					}
+//					if (dvaCfgText.equals("dvaDynaStrt")) {
+//						dvaEventType = dvaXpp.next();
+//						dvaDynaStrt = Integer.parseInt((dvaXpp.getText()));
+//					}
+//					if (dvaCfgText.equals("dvaMaxAcuityLvl")) {
+//						dvaEventType = dvaXpp.next();
+//						dvaMaxAcuityLvl = Integer.parseInt((dvaXpp.getText()));
+//					}
+//					if (dvaCfgText.equals("dvaTestPerAcuity")) {
+//						dvaEventType = dvaXpp.next();
+//						dvaTestPerAcuity = Integer.parseInt((dvaXpp.getText()));
+//					}
+//					if (dvaCfgText.equals("dvaTrigInhibitor")) {
+//						dvaEventType = dvaXpp.next();
+//						dvaTrigInhibitor = Integer.parseInt((dvaXpp.getText()));
+//					}
+//				}
+//				dvaEventType = dvaXpp.next();
+//			}
+//		} catch (XmlPullParserException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		UpdateSharePreference();
+		
 	}
 
 	@Override
@@ -1095,8 +1098,10 @@ public class DVAActivity extends Activity implements SensorEventListener {
 				dvaSensors = DVASensors.INTERNAL;
 		// test cycle complete, initialize for next run
 		if (dvaTestCnt <= 0)
+		{
+			Log.v(NOTIFICATION_SERVICE, "dava test count <= 0");
 			onNavigate(140);
-
+		}
 	}
 
 	private boolean onNavigate(int dvaGo) {
@@ -1519,6 +1524,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			for (int i = 0; i <= 2; i++)
 				staticFileRcd = staticFileRcd + ","
 						+ (Double.toString(dvaStaticArr[dvaStaticDex][i]));
+			Log.v("static record",staticFileRcd);
 			dvaTestCnt--;
 			if(!c_shown.equals(c_response))
 				dvaWrgCnt ++;
@@ -1536,6 +1542,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 					dvaStaticWriter.newLine();
 				} catch (IOException e) {
 					e.printStackTrace();
+					Log.e("write static file error", "true");
 				}
 
 			} else {
@@ -1546,11 +1553,13 @@ public class DVAActivity extends Activity implements SensorEventListener {
 					dvaStaticWriter.newLine();
 				} catch (IOException e) {
 					e.printStackTrace();
+					Log.e("write static file error", "true");
 				}
 				try {
 					dvaStaticWriter.close();
 				} catch (IOException e) {
 					e.printStackTrace();
+					Log.e("write static file error", "true");
 				}
 				dvaTesting = DVATesting.INACTIVE;
 				onNavigate(140);
@@ -1707,6 +1716,21 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		long mFuture = System.currentTimeMillis() + mDelay;
 		while (System.currentTimeMillis() < mFuture) {
 		}
+	}
+	
+	public void UpdateSharePreference(){
+		
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		
+		dvaRetrys = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_retrys_num, ""));
+		dvaStaticStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_static_start_lvl, ""));
+		dvaDynaStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_dyna_start_lvl, ""));
+		dvaMaxAcuityLvl = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_max_acuity_lvl, ""));
+		dvaTestPerAcuity = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_per_acuity, ""));
+		dvaTrigInhibitor = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_trg_inhibitor_num, ""));
+		dvaStaticTestMax = dvaStaticStrt * dvaTestPerAcuity;
+		dvaDynaTestMax = dvaDynaStrt * dvaTestPerAcuity;
 	}
 
 }
