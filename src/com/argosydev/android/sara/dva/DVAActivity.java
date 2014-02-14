@@ -471,11 +471,12 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		case R.id.activateintrnlaccel:
 			onNavigate(130);
 			return true;
-		case R.id.dvateststart:
-			onNavigate(140);
-			return true;
+		
 		case R.id.dvatestsetting:
 			onNavigate(340);
+			return true;
+		case R.id.dvateststart:
+			onNavigate(140);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -1723,12 +1724,12 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		SharedPreferences sharedPref = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		
-		dvaRetrys = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_retrys_num, ""));
-		dvaStaticStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_static_start_lvl, ""));
-		dvaDynaStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_dyna_start_lvl, ""));
-		dvaMaxAcuityLvl = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_max_acuity_lvl, ""));
-		dvaTestPerAcuity = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_per_acuity, ""));
-		dvaTrigInhibitor = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_trg_inhibitor_num, ""));
+		dvaRetrys = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_retrys_num, "5"));
+		dvaStaticStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_static_start_lvl, "2"));
+		dvaDynaStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_dyna_start_lvl, "3"));
+		dvaMaxAcuityLvl = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_max_acuity_lvl, "10"));
+		dvaTestPerAcuity = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_per_acuity, "2"));
+		dvaTrigInhibitor = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_trg_inhibitor_num, "50"));
 		dvaStaticTestMax = dvaStaticStrt * dvaTestPerAcuity;
 		dvaDynaTestMax = dvaDynaStrt * dvaTestPerAcuity;
 	}
