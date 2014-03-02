@@ -65,8 +65,19 @@
     <string name="landoltc">landoltc</string>
     <string name="filename">filename</string>
    <!-- Preference Setting Values -->
+   <string name="dvachange">Change </string>
+   <string name="dvadefault">Default</string>
    <string name="dvatestsetting">DVA Setting</string>
-   <string name="dva_test_basic_setting">Custom Setting</string>
+   <string name="dva_test_path_setting">Path to data is built from these components</string>
+   <string name="dva_test_path_pj_setting">Project Name</string>
+   <string name="dva_test_path_sub_setting">Subject Name</string>
+   <string name="dva_test_path_fd_setting">Folder Name</string>
+   
+   <string name="dva_test_path_pj_setting_summary">DVA Setting</string>
+   <string name="dva_test_path_sub_setting_summary">Joshua</string>
+   <string name="dva_test_path_fd_setting_summary">Joshua</string>
+   
+   <string name="dva_test_basic_setting">Test Session Parameters</string>
    <string name="dva_test_pre_setting">Default Setting</string>
     <string name="dva_test_retrys_num_title">Retrys Limit</string>
     <string name="dva_test_retrys_num_summary">DVA test Retrys number</string>
@@ -82,13 +93,13 @@
     <string name="dva_trg_inhibitor_num_summary">DVA Trigger Inhibitor Number</string>
     
      <string name="dva_test_retrys_num_default">5</string>
-     <string name="dva_static_start_lvl_default">5</string>
-     <string name="dva_dyna_start_lvl_default">5</string>
-     <string name="dva_test_per_acuity_default">5</string>
+     <string name="dva_static_start_lvl_default">2</string>
+     <string name="dva_dyna_start_lvl_default">3</string>
+     <string name="dva_test_per_acuity_default">10</string>
      <string name="dva_trg_inhibitor_num_default">5</string>
-     <string name="dva_max_acuity_lvl_default">5</string>
+     <string name="dva_max_acuity_lvl_default">50</string>
      
-     <string name="dva_far_default_setting">Default Setting for Long Distance Test</string>
-     <string name="dva_near_default_setting">Default Setting for Short Distance Test</string>
+     <string name="dva_near_default_setting">Default Setting for Short/Long Distance Test</string>
+     <string name="dva_near_default_setting_summary">Switch on is Long Distance Default and off is Short Distance Default</string>
      
 </resources>

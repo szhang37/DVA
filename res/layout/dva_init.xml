@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation ="vertical" 
+    android:padding="25dp">
+    
+    <TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_path_setting"
+    android:layout_marginBottom="20dp"
+    android:textStyle="bold|italic"
+        />
+    
+    
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_path_pj_setting"
+        />
+    <EditText 
+    android:id="@+id/dva_project_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+        />
+    </LinearLayout>
+    
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_path_sub_setting"
+        />
+    <EditText 
+    android:id="@+id/dva_subject_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+    
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_path_fd_setting"
+        />
+    <EditText 
+    android:id="@+id/dva_folder_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+    
+    <TextView 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_basic_setting"
+    android:layout_marginBottom="20dp"
+    android:textStyle="bold|italic"
+        />
+     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_per_acuity_title"
+        />
+    <EditText 
+    android:id="@+id/dva_set_per_acuity"   
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+    
+      <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_test_retrys_num_title"
+        />
+    <EditText 
+    android:id="@+id/dva_set_retrys"   
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+    
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_static_start_lvl_title"
+        />
+    <EditText 
+     android:id="@+id/dva_set_static_strt"   
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+    
+      <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_dyna_start_lvl_title"
+        />
+    <EditText 
+    android:id="@+id/dva_set_dyna_strt"   
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+    
+     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_max_acuity_lvl_title"
+        />
+    <EditText 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+    android:id="@+id/dva_set_max_acuity"   
+        />
+    </LinearLayout>
+    
+     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation ="horizontal" 
+    android:layout_marginBottom="30dp">
+    <TextView 
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:text="@string/dva_trg_inhibitor_num_title"
+        />
+    <EditText 
+    android:id="@+id/dva_set_trg_inhi"   
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+        />
+    </LinearLayout>
+
+</LinearLayout>

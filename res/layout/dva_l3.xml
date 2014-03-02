@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
     <PreferenceCategory
         android:key="dva_test_basic_setting"
         android:title="@string/dva_test_basic_setting"
@@ -60,12 +61,9 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="dva_near_default_setting"
-        android:title="@string/dva_near_default_setting" />
+        android:title="@string/dva_near_default_setting" 
+        android:summary="@string/dva_near_default_setting_summary" />
     
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="dva_far_default_setting"
-        android:title="@string/dva_near_default_setting" />
         
     </PreferenceCategory>
 

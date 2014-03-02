@@ -28,6 +28,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.Menu;
 
@@ -65,7 +66,7 @@ import com.shimmerresearch.driver.FormatCluster;
 import com.shimmerresearch.driver.ObjectCluster;
 import com.shimmerresearch.driver.Shimmer;
 
-public class DVAActivity extends Activity implements SensorEventListener {
+@SuppressLint("NewApi") public class DVAActivity extends Activity implements SensorEventListener {
 
 	private static Context context;
 	static final int REQUEST_ENABLE_BT = 1;
@@ -182,7 +183,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static double tstGyrzMin;
 
 	private static Long dvaTstStrtTime;
-	private static int acuityMax;
+	private static int acuityMax ;
 	private static int acuityLvl;
 	private static int dvaTestCnt;
 	private static int dvaTestCycle;
@@ -197,6 +198,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	private static String dynaTrgFileRcd;
 	private static String dynaTrgMarker;
 	private static File dvaFile;
+	private static File dvaFileDirectory;
 	private static BufferedWriter dvaStaticWriter;
 	private static BufferedWriter dvaDynaSmlWriter;
 	private static BufferedWriter dvaDynaBigWriter;
@@ -223,20 +225,24 @@ public class DVAActivity extends Activity implements SensorEventListener {
 //	private static XmlPullParser dvaXpp;
 //	private static InputStream dvaInputStr;
 //	private static OutputStream dvaOutputStr;
-	public static int dvaRetrys;
-	public static int dvaStaticStrt;
-	public static int dvaDynaStrt;
+	public static int dvaRetrys=0;
+	public static int dvaStaticStrt=0;
+	public static int dvaDynaStrt=0;
 	public static int dvaStaticTestMax;
 	public static int dvaDynaTestMax;
-	public static int dvaMaxAcuityLvl;
+	public static int dvaMaxAcuityLvl=0;
 	public static int retrigger;
 	private static TextView dvaRetryCnt;
-	private static int dvaTrigInhibit;
-	public static int dvaTestPerAcuity;
-	public static int dvaTrigInhibitor;
+	private static int dvaTrigInhibit=0;
+	public static int dvaTestPerAcuity=0;
+	public static int dvaTrigInhibitor=0;
 	private static String deviceName;
 	private static TextView dvaDeviceTV;
 	private static int dvaPositionHold;
+	public static String prjName = "Project";
+	public static String subName = "Subject";
+	public static String fdName = "Condition";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -357,13 +363,14 @@ public class DVAActivity extends Activity implements SensorEventListener {
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-		UpdateSharePreference();
+		UpdateSharePreference(getResources().getIntArray(R.array.dva_test_far));
 		
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
+		
 		// sensor & BT managers instances in onStart
 		// instance the internal sensor manager.
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -399,17 +406,28 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		super.onPause();
 		mSensorManager.unregisterListener(this);
 		// finish();
+		
 	}
 
 	protected void onResume() {
 		super.onResume();
 		mSensorManager.registerListener(this, mAccelerometer,
 				SensorManager.SENSOR_DELAY_NORMAL);
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		dvaStateMac = sharedPref.getInt("view_mode", 0);
+		if(dvaStateMac!=0) onNavigate(dvaStateMac);
+		
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor ed = sharedPref.edit();
+        ed.putInt("view_mode", dvaStateMac);
+        ed.commit();
 	}
 
 	@Override
@@ -417,6 +435,11 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		super.onDestroy();
 		if (mShimmerDevice != null)
 			mShimmerDevice.stop();
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor ed = sharedPref.edit();
+        ed.putInt("view_mode", 0);
+        ed.commit();
 	}
 
 	@Override
@@ -476,6 +499,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			onNavigate(340);
 			return true;
 		case R.id.dvateststart:
+			openSettingDialog();
 			onNavigate(140);
 			return true;
 		default:
@@ -1106,6 +1130,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 	}
 
 	private boolean onNavigate(int dvaGo) {
+		
 		// onNavigate advance the dvaStateMac to the next state
 		// the button listeners always onNavigate to the next state
 		if (dvaGo == 110) {
@@ -1181,6 +1206,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			// DVA ready to start
 			// initialize to preserve progression states. this will change when
 			// type is selected.
+			
 			dvaTestCnt = dvaDynaTestMax;
 			setContentView(R.layout.dva_l1);
 			// assuming internal accel is operational. add validation
@@ -1476,8 +1502,8 @@ public class DVAActivity extends Activity implements SensorEventListener {
 			dvaFileName += "_DVA_dynamic";
 		dvaFileName += Double.toString(gyroTrigger);
 		editText21.setText(dvaFileName);
-		File root = Environment.getExternalStorageDirectory();
-		dvaFile = new File(root, ("DVA/" + dvaFileName));
+		//File root = Environment.getExternalStorageDirectory();
+		dvaFile = new File(dvaFileDirectory, (dvaFileName));
 		if (dvaState == DVAState.DVAStatic) {
 			try {
 				dvaStaticWriter = new BufferedWriter(new FileWriter(
@@ -1517,7 +1543,7 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		Long dvaElapse = (System.currentTimeMillis()) - dvaTstStrtTime;
 		mImageView.setVisibility(ImageView.INVISIBLE);
 		//this conditional is unnecessary and can be removed later
-		if (dvaTestType == DVATestType.STATIC) {
+
 			staticFileRcd = Long.toString(dvaElapse) + ",";
 			staticFileRcd = staticFileRcd + acuityLvl + ",";
 			staticFileRcd = staticFileRcd + c_shown + ",";
@@ -1565,8 +1591,6 @@ public class DVAActivity extends Activity implements SensorEventListener {
 				dvaTesting = DVATesting.INACTIVE;
 				onNavigate(140);
 			}
-			return;
-		}
 	}
 	/**Shi Zhang modified the method to write the same to trigger file*/
 	private void dvaDynaSmlRcrd(DVATestType c_response) {
@@ -1718,20 +1742,49 @@ public class DVAActivity extends Activity implements SensorEventListener {
 		while (System.currentTimeMillis() < mFuture) {
 		}
 	}
-	
-	public void UpdateSharePreference(){
+	/**********************************************************************************************
+	 * 
+	 * public static functions for params setting and path setting
+	 * 
+	 **********************************************************************************************/
+	public static void UpdateSharePreference(int[] val){
 		
-		SharedPreferences sharedPref = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		
-		dvaRetrys = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_retrys_num, "5"));
-		dvaStaticStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_static_start_lvl, "2"));
-		dvaDynaStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_dyna_start_lvl, "3"));
-		dvaMaxAcuityLvl = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_max_acuity_lvl, "10"));
-		dvaTestPerAcuity = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_per_acuity, "2"));
-		dvaTrigInhibitor = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_trg_inhibitor_num, "50"));
+		dvaRetrys = val[0];
+		dvaStaticStrt = val[1];
+		dvaDynaStrt = val[2];
+		dvaMaxAcuityLvl = val[3];
+		dvaTestPerAcuity = val[4];
+		dvaTrigInhibitor = val[5];
 		dvaStaticTestMax = dvaStaticStrt * dvaTestPerAcuity;
 		dvaDynaTestMax = dvaDynaStrt * dvaTestPerAcuity;
 	}
+	
+	private void openSettingDialog(){
+		DVADialogFragment dialog = new DVADialogFragment();
+        dialog.show(getFragmentManager(), "DVADialogFragment");
+	}
+	public void updateFilePath(){
+		CharSequence text = "Updated the new file saving path.";
+		File root = Environment.getExternalStorageDirectory();
+		dvaFileDirectory = new File(root, ("DVA/" + prjName +'/' + subName + '/' + fdName+'/'));
+		if(!dvaFileDirectory.exists()) {
+				if(!dvaFileDirectory.mkdirs()) {
+					dvaFileDirectory = new File(root, "DVA/");
+					text = "Unable to create new path directory! and set to default path DVA/";
+					}
+				}
+		Context context = getApplicationContext();
+		
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
+	}
+	public static void updatePathParams(String prj, String sub, String fd){
+		prjName = prj;
+		subName = sub;
+		fdName = fd;
+		//updateFilePath();
+	 }
 
 }

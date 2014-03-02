@@ -191,7 +191,7 @@ public final class CombineDblArr {
 		}
 		try {
 			dvaDynaBigWriter.close();
-			dvaLogWriter.close();
+			//dvaLogWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

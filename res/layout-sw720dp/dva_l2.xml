@@ -149,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/radioGroup1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
+        android:layout_marginTop="85dp"
         android:contentDescription="@string/landoltc"
         android:padding="1dp"
         android:src="@drawable/c_dn_3"

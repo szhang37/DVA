@@ -37,12 +37,12 @@ public class DVASettingsActivity extends PreferenceActivity  implements OnShared
 		Preference pref = findPreference(key);
         if (pref instanceof SwitchPreference) {
             if(sharedPreferences.getBoolean(key, false)){
-            	Log.v(NOTIFICATION_SERVICE, "switch on");
-            	if(key.equals("dva_near_default_setting"))
-            		setValue(getResources().getIntArray(R.array.dva_test_near));	
-            			
-            	else if (key.equals("dva_far_default_setting"))
-            		setValue(getResources().getIntArray(R.array.dva_test_far));
+            		setValue(getResources().getIntArray(R.array.dva_test_far));	
+
+            		
+            }
+            else {
+            	setValue(getResources().getIntArray(R.array.dva_test_near));
             }
         }
 		update();
@@ -52,7 +52,9 @@ public class DVASettingsActivity extends PreferenceActivity  implements OnShared
 	private void update() {
 		SharedPreferences sharedPref = PreferenceManager
 				.getDefaultSharedPreferences(this);
-
+		
+		//findPreference("dva_test_path_pj_setting").
+		
 		findPreference(dva_test_retrys_num).setSummary(
 						getResources().getString(
 								R.string.dva_test_retrys_num_summary)
@@ -95,15 +97,15 @@ public class DVASettingsActivity extends PreferenceActivity  implements OnShared
 								+ ": "
 								+ sharedPref.getString(dva_trg_inhibitor_num,
 										""));
+		int[] val = new int[6];
+		val[0] = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_retrys_num, ""));
+		val[1]= Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_static_start_lvl, ""));
+		val[2] = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_dyna_start_lvl, ""));
+		val[3] = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_max_acuity_lvl, ""));
+		val[4]= Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_per_acuity, ""));
+		val[5] = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_trg_inhibitor_num, ""));
 		
-		DVAActivity.dvaRetrys = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_retrys_num, ""));
-		DVAActivity.dvaStaticStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_static_start_lvl, ""));
-		DVAActivity.dvaDynaStrt = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_dyna_start_lvl, ""));
-		DVAActivity.dvaMaxAcuityLvl = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_max_acuity_lvl, ""));
-		DVAActivity.dvaTestPerAcuity = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_test_per_acuity, ""));
-		DVAActivity.dvaTrigInhibitor = Integer.parseInt(sharedPref.getString(DVASettingsActivity.dva_trg_inhibitor_num, ""));
-		DVAActivity.dvaStaticTestMax = DVAActivity.dvaStaticStrt * DVAActivity.dvaTestPerAcuity;
-		DVAActivity.dvaDynaTestMax = DVAActivity.dvaDynaStrt * DVAActivity.dvaTestPerAcuity;
+		DVAActivity.UpdateSharePreference(val);
 	}
 	
 	private void setValue(int[] arr){
