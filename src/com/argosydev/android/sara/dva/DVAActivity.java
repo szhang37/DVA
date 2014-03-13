@@ -101,7 +101,7 @@ import com.shimmerresearch.driver.Shimmer;
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
 
-	private enum DVATestType {
+	public enum DVATestType {
 		STATIC, UP, DN, LEFT, RIGHT
 	}
 
@@ -146,7 +146,7 @@ import com.shimmerresearch.driver.Shimmer;
 	private static DVAState dvaState;
 	// used to control configuration mode and data acquisition
 	private static DVATesting dvaTesting;
-	private static DVATestType dvaTestType;
+	public static DVATestType dvaTestType;
 	// used to run Static testing w/o external sensors
 	private static DVASensors dvaSensors;
 	private int dvaStateMac;
@@ -363,7 +363,7 @@ import com.shimmerresearch.driver.Shimmer;
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-		UpdateSharePreference(getResources().getIntArray(R.array.dva_test_far));
+		UpdateSharePreference(getResources().getIntArray(R.array.dva_test_near));
 		
 	}
 
@@ -1492,6 +1492,12 @@ import com.shimmerresearch.driver.Shimmer;
 		finish();
 	}
 
+	/**********************************************************************************************
+	 * 
+	 * public functions for File creating and writing
+	 * 
+	 **********************************************************************************************/
+
 	public void setFileName(DVAState dvaState) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
 		dvaClndr = dvaClndr.getInstance();
@@ -1588,6 +1594,7 @@ import com.shimmerresearch.driver.Shimmer;
 					e.printStackTrace();
 					Log.e("write static file error", "true");
 				}
+				openScoreDialog();
 				dvaTesting = DVATesting.INACTIVE;
 				onNavigate(140);
 			}
@@ -1657,9 +1664,10 @@ import com.shimmerresearch.driver.Shimmer;
 			}
 			// launch the big file array transformation and store thread
 			storeBigFile();
-			// release array memory after test suite completed and file data written
+			// release array memory after test suite completed and file data writte n
 			sBigRcrd = null;
 			dBigRcrd = null;
+			openScoreDialog();
 			dvaTesting = DVATesting.INACTIVE;
 			onNavigate(140);
 		}
@@ -1763,6 +1771,12 @@ import com.shimmerresearch.driver.Shimmer;
 		DVADialogFragment dialog = new DVADialogFragment();
         dialog.show(getFragmentManager(), "DVADialogFragment");
 	}
+	
+	private void openScoreDialog(){
+		DVAScoreDialogFragment dialog = new DVAScoreDialogFragment();
+        dialog.show(getFragmentManager(), "DVAScoreDialogFragment");
+	}
+	
 	public void updateFilePath(){
 		CharSequence text = "Updated the new file saving path.";
 		File root = Environment.getExternalStorageDirectory();

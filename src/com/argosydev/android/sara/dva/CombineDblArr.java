@@ -28,7 +28,8 @@ public final class CombineDblArr {
 		// start TS
 
 		double d = -1;
-		double bestDistanceNow = Double.MAX_VALUE;
+		double bestDistanceNow
+		= Double.MAX_VALUE;
 		int locLrgDex = 0;
 		int locSmlDex = 0;
 		int lrgSize = lrgArr.length;
