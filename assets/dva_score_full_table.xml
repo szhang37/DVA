@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dvaScoreTable>
+    <row>
+        <Opto>1</Opto>  
+        <Size>1</Size>     
+        <Nearlogmar>-0.0696</Nearlogmar>  
+        <Nearsnellen>17.04</Nearsnellen>  
+        <Farlogmar>-0.6716</Farlogmar> 
+        <Farsnellen>4.26</Farsnellen>
+    </row> 
+    
+    <row>
+        <Opto>2</Opto>  
+        <Size>2</Size>     
+        <Nearlogmar>0.2314</Nearlogmar>  
+        <Nearsnellen>34.08</Nearsnellen>  
+        <Farlogmar>-0.3706</Farlogmar> 
+        <Farsnellen>8.52</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>3</Opto>  
+        <Size>3</Size>     
+        <Nearlogmar>0.4075</Nearlogmar>  
+        <Nearsnellen>51.12</Nearsnellen>  
+        <Farlogmar>-0.1945</Farlogmar> 
+        <Farsnellen>12.78</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>4</Opto>  
+        <Size>4</Size>     
+        <Nearlogmar>0.5325</Nearlogmar>  
+        <Nearsnellen>68.16</Nearsnellen>  
+        <Farlogmar>-0.0696</Farlogmar> 
+        <Farsnellen>17.04</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>5</Opto>  
+        <Size>5</Size>     
+        <Nearlogmar>0.6294</Nearlogmar>  
+        <Nearsnellen>85.20</Nearsnellen>  
+        <Farlogmar>0.0273</Farlogmar> 
+        <Farsnellen>21.30</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>6</Opto>  
+        <Size>6</Size>     
+        <Nearlogmar>0.7086</Nearlogmar>  
+        <Nearsnellen>102.23</Nearsnellen>  
+        <Farlogmar>0.1065</Farlogmar> 
+        <Farsnellen>25.56</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>7</Opto>  
+        <Size>7</Size>     
+        <Nearlogmar>0.7755</Nearlogmar>  
+        <Nearsnellen>119.27</Nearsnellen>  
+        <Farlogmar>0.1735</Farlogmar> 
+        <Farsnellen>29.82</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>8</Opto>  
+        <Size>8</Size>     
+        <Nearlogmar>0.8335</Nearlogmar>  
+        <Nearsnellen>136.31</Nearsnellen>  
+        <Farlogmar>0.2314</Farlogmar> 
+        <Farsnellen>34.08</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>9</Opto>  
+        <Size>9</Size>     
+        <Nearlogmar>0.8847</Nearlogmar>  
+        <Nearsnellen>153.35</Nearsnellen>  
+        <Farlogmar>0.2826</Farlogmar> 
+        <Farsnellen>38.34</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>10</Opto>  
+        <Size>10</Size>     
+        <Nearlogmar>0.9304</Nearlogmar>  
+        <Nearsnellen>170.39</Nearsnellen>  
+        <Farlogmar>0.3284</Farlogmar> 
+        <Farsnellen>42.60</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>11</Opto>  
+        <Size>12</Size>     
+        <Nearlogmar>1.0096</Nearlogmar>  
+        <Nearsnellen>204.47</Nearsnellen>  
+        <Farlogmar>0.4075</Farlogmar> 
+        <Farsnellen>51.12</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>12</Opto>  
+        <Size>16</Size>     
+        <Nearlogmar>1.1345</Nearlogmar>  
+        <Nearsnellen>272.63</Nearsnellen>  
+        <Farlogmar>0.5325</Farlogmar> 
+        <Farsnellen>68.16</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>13</Opto>  
+        <Size>20</Size>     
+        <Nearlogmar>1.2314</Nearlogmar>  
+        <Nearsnellen>340.78</Nearsnellen>  
+        <Farlogmar>0.6294</Farlogmar> 
+        <Farsnellen>85.20</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>14</Opto>  
+        <Size>24</Size>     
+        <Nearlogmar>1.3106</Nearlogmar>  
+        <Nearsnellen>408.94</Nearsnellen>  
+        <Farlogmar>0.7086</Farlogmar> 
+        <Farsnellen>102.23</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>15</Opto>  
+        <Size>28</Size>     
+        <Nearlogmar>1.3776</Nearlogmar>  
+        <Nearsnellen>477.09</Nearsnellen>  
+        <Farlogmar>0.7755</Farlogmar> 
+        <Farsnellen>119.27</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>16</Opto>  
+        <Size>32</Size>     
+        <Nearlogmar>1.4356</Nearlogmar>  
+        <Nearsnellen>545.25</Nearsnellen>  
+        <Farlogmar>0.8335</Farlogmar> 
+        <Farsnellen>136.31</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>17</Opto>  
+        <Size>36</Size>     
+        <Nearlogmar>1.4867</Nearlogmar>  
+        <Nearsnellen>613.40</Nearsnellen>  
+        <Farlogmar>0.8847</Farlogmar> 
+        <Farsnellen>153.35</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>18</Opto>  
+        <Size>40</Size>     
+        <Nearlogmar>1.5325</Nearlogmar>  
+        <Nearsnellen>681.56</Nearsnellen>  
+        <Farlogmar>0.9304</Farlogmar> 
+        <Farsnellen>170.39</Farsnellen>
+    </row>
+    
+    <row>
+        <Opto>19</Opto>  
+        <Size>48</Size>     
+        <Nearlogmar>1.6117</Nearlogmar>  
+        <Nearsnellen>817.87</Nearsnellen>  
+        <Farlogmar>1.0096</Farlogmar> 
+        <Farsnellen>204.47</Farsnellen>
+    </row>
+</dvaScoreTable>
