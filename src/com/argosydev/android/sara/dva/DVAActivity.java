@@ -46,6 +46,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -242,7 +243,7 @@ import com.shimmerresearch.driver.Shimmer;
 	public static String prjName = "Project";
 	public static String subName = "Subject";
 	public static String fdName = "Condition";
-
+	public DVAScore dvascore;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -364,6 +365,7 @@ import com.shimmerresearch.driver.Shimmer;
 //			e.printStackTrace();
 //		}
 		UpdateSharePreference(getResources().getIntArray(R.array.dva_test_near));
+		dvascore = new DVAScore(this.getApplicationContext());
 		
 	}
 
@@ -406,6 +408,11 @@ import com.shimmerresearch.driver.Shimmer;
 		super.onPause();
 		mSensorManager.unregisterListener(this);
 		// finish();
+//		SharedPreferences sharedPref = PreferenceManager
+//				.getDefaultSharedPreferences(this);
+//		SharedPreferences.Editor ed = sharedPref.edit();
+//        ed.putInt("view_mode", dvaStateMac);
+//        ed.commit();
 		
 	}
 
@@ -413,21 +420,21 @@ import com.shimmerresearch.driver.Shimmer;
 		super.onResume();
 		mSensorManager.registerListener(this, mAccelerometer,
 				SensorManager.SENSOR_DELAY_NORMAL);
-		SharedPreferences sharedPref = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		dvaStateMac = sharedPref.getInt("view_mode", 0);
-		if(dvaStateMac!=0) onNavigate(dvaStateMac);
+//		SharedPreferences sharedPref = PreferenceManager
+//				.getDefaultSharedPreferences(this);
+//		dvaStateMac = sharedPref.getInt("view_mode", 0);
+//		if(dvaStateMac!=0) onNavigate(dvaStateMac);
 		
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		SharedPreferences sharedPref = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		SharedPreferences.Editor ed = sharedPref.edit();
-        ed.putInt("view_mode", dvaStateMac);
-        ed.commit();
+//		SharedPreferences sharedPref = PreferenceManager
+//				.getDefaultSharedPreferences(this);
+//		SharedPreferences.Editor ed = sharedPref.edit();
+//        ed.putInt("view_mode", 0);
+//        ed.commit();
 	}
 
 	@Override
@@ -435,11 +442,7 @@ import com.shimmerresearch.driver.Shimmer;
 		super.onDestroy();
 		if (mShimmerDevice != null)
 			mShimmerDevice.stop();
-		SharedPreferences sharedPref = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		SharedPreferences.Editor ed = sharedPref.edit();
-        ed.putInt("view_mode", 0);
-        ed.commit();
+		
 	}
 
 	@Override
@@ -1171,7 +1174,7 @@ import com.shimmerresearch.driver.Shimmer;
 			dvb4DynaRght.setEnabled(false);
 			dvb5DynaLeft.setEnabled(false);
 			dvb6ComputeDVA.setVisibility(View.VISIBLE);
-			dvb6ComputeDVA.setEnabled(false);
+			dvb6ComputeDVA.setEnabled(true);
 			dvb7Quit.setVisibility(View.VISIBLE);
 			dvb7Quit.setEnabled(true);
 		}
@@ -1485,6 +1488,8 @@ import com.shimmerresearch.driver.Shimmer;
 
 	public void dvb6ComputeDVA(View view) {
 		// onClick listener
+		DVAFinalScoreDialogFragment dialog = new DVAFinalScoreDialogFragment();
+        dialog.show(getFragmentManager(), "DVAScoreFinalDialogFragment");
 	}
 
 	public void dvb7Quit(View view) {
@@ -1566,6 +1571,10 @@ import com.shimmerresearch.driver.Shimmer;
 				// transitions occur.
 				if ((dvaTestCnt % dvaTestPerAcuity) == 0)
 				{
+					boolean isFar = PreferenceManager
+							.getDefaultSharedPreferences(this).getBoolean("dva_near_default_setting", false);
+					
+					dvascore.updateScore(dvaTestType, acuityLvl, isFar, dvaWrgCnt);
 					acuityLvl--;
 					dvaWrgCnt = 0;
 				}
@@ -1580,7 +1589,10 @@ import com.shimmerresearch.driver.Shimmer;
 
 			} else {
 				// test cycle ended
-				dvaCompute();
+				boolean isFar = PreferenceManager
+						.getDefaultSharedPreferences(this).getBoolean("dva_near_default_setting", false);
+				dvascore.updateScore(dvaTestType, acuityLvl, isFar, dvaWrgCnt);
+				//dvaCompute();
 				try {
 					dvaStaticWriter.write(staticFileRcd);
 					dvaStaticWriter.newLine();
@@ -1631,6 +1643,10 @@ import com.shimmerresearch.driver.Shimmer;
 			// transitions occur.
 			if ((dvaTestCnt % dvaTestPerAcuity) == 0)
 			{
+				boolean isFar = PreferenceManager
+						.getDefaultSharedPreferences(this).getBoolean("dva_near_default_setting", false);
+				
+				dvascore.updateScore(dvaTestType, acuityLvl, isFar, dvaWrgCnt);
 				acuityLvl--;
 				dvaWrgCnt = 0;
 			}
@@ -1645,6 +1661,10 @@ import com.shimmerresearch.driver.Shimmer;
 			}
 		} else {
 			// test cycle ended
+			boolean isFar = PreferenceManager
+					.getDefaultSharedPreferences(this).getBoolean("dva_near_default_setting", false);
+			
+			dvascore.updateScore(dvaTestType, acuityLvl, isFar, dvaWrgCnt);
 			dvaCompute();
 			try {
 				dvaDynaSmlWriter.write(dynaSmlFileRcd);

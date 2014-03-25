@@ -24,29 +24,29 @@ public class DVAScoreDialogFragment extends DialogFragment{
         switch(DVAActivity.dvaTestType){
 		case STATIC:
 			message = "STATIC LOGMAR SCORE:";
-			score = DVAScore.staticScore;
+			score = ((DVAActivity)getActivity()).dvascore.getStaticScore();
 			break;
         case DN:
         	message = "DYNAMIC DOWN LOGMAR SCORE:";
-        	score = DVAScore.dynamicDownScore;
+        	score = ((DVAActivity)getActivity()).dvascore.getDynamicDownScore();
 			break;
 		case LEFT:
 			message = "DYNAMIC LEFT LOGMAR SCORE:";
-			score = DVAScore.dynamicLeftScore;
+			score = ((DVAActivity)getActivity()).dvascore.getDynamicLeftScore();
 			break;
 		case RIGHT:
 			message = "DYNAMIC RIGHT LOGMAR SCORE:";
-			score = DVAScore.dynamicRightScore;
+			score = ((DVAActivity)getActivity()).dvascore.getDynamicRightScore();
 			break;
 		case UP:
 			message = "DYNAMIC UP LOGMAR SCORE:";
-			score = DVAScore.dynamicUpScore;
+			score = ((DVAActivity)getActivity()).dvascore.getDynamicUpScore();
 			break;
 		default:
 			break;
         }
         v1.setText(message);
-        v2.setText(String.format("%.2f", score));
+        v2.setText(String.format("%.5f", score));
         builder.setView(v).setNeutralButton("OK", null);
         // Create the AlertDialog object and return it
         return builder.create();

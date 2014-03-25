@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dvaScoreTable>
     <row>
+        <Opto>0</Opto>  
+        <Size>0</Size>     
+        <Nearlogmar>0</Nearlogmar>  
+        <Nearsnellen>0</Nearsnellen>  
+        <Farlogmar>0</Farlogmar> 
+        <Farsnellen>0</Farsnellen>
+    </row>
+    <row>
         <Opto>1</Opto>  
         <Size>1</Size>     
         <Nearlogmar>-0.0696</Nearlogmar>  

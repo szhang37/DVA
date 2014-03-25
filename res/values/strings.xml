@@ -102,4 +102,9 @@
      <string name="dva_near_default_setting">Default Setting for Short/Long Distance Test</string>
      <string name="dva_near_default_setting_summary">Switch on is Long Distance Default and off is Short Distance Default</string>
      
+     <string name="dva_final_score_time">Test Timestamp</string>
+     <string name="dva_final_score_direction">Test Direction</string>
+     <string name="dva_final_score_dyna_score">Dynamic LogMAR</string>
+     <string name="dva_final_score_static_score">Static LogMAR</string>
+     <string name="dva_final_score_final_score">DVA Score</string>
 </resources>
